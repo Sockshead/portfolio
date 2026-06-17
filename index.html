@@ -658,6 +658,34 @@
   @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1; transform: none; transition: none; }
   }
+
+  /* --- Interactions (hover, tooltips, collapsibles) --- */
+  .racecard .cell { transition: background 220ms ease, color 220ms ease; }
+  .racecard .cell:hover { background: rgba(194,91,45,0.10); }
+  .racecard .cell:hover .figure { color: var(--clay); }
+  .racecard .cell.accent:hover { background: var(--clay-deep); }
+  [data-tip] { position: relative; }
+  [data-tip]:hover { cursor: help; }
+  [data-tip]:hover::after {
+    content: attr(data-tip);
+    position: absolute; left: 50%; bottom: calc(100% + 10px); transform: translateX(-50%);
+    background: var(--ink); color: var(--paper); font-family: var(--mono);
+    font-size: 10.5px; letter-spacing: .06em; line-height: 1.5; text-transform: none;
+    padding: 9px 13px; border-radius: 8px; width: max-content; max-width: 260px;
+    text-align: center; z-index: 30; box-shadow: 5px 5px 0 rgba(26,22,18,0.16);
+  }
+  .elsewhere { margin-top: 20px; display: grid; gap: 14px; max-width: 760px; }
+  .collapsible { border: 1px solid var(--ink); border-radius: 10px; overflow: hidden; background: var(--paper); transition: box-shadow 220ms ease; }
+  .collapsible[open] { box-shadow: 6px 6px 0 var(--ink); }
+  .collapsible > summary { list-style: none; cursor: pointer; padding: 16px 22px; display: flex; align-items: center; justify-content: space-between; font-family: var(--mono); text-transform: uppercase; letter-spacing: .12em; font-size: 12px; color: var(--ink); transition: color 200ms ease; }
+  .collapsible > summary::-webkit-details-marker { display: none; }
+  .collapsible > summary:hover { color: var(--clay); }
+  .collapsible .plus { color: var(--clay); font-size: 18px; transition: transform 220ms ease; }
+  .collapsible[open] .plus { transform: rotate(45deg); }
+  .collapsible .body { padding: 4px 22px 22px; }
+  .collapsible .body p { margin: 0 0 14px; color: var(--ink-soft); font-family: var(--serif); font-size: 16px; }
+  .social-cta { display: inline-block; font-family: var(--mono); text-transform: uppercase; letter-spacing: .1em; font-size: 11.5px; border: 1px solid var(--ink); padding: 11px 17px; border-radius: 8px; transition: background 200ms ease, color 200ms ease, border-color 200ms ease; }
+  .social-cta:hover { background: var(--clay); color: var(--paper); border-color: var(--clay); }
 </style>
 </head>
 
@@ -703,7 +731,7 @@
   <!-- ===== Brief ===== -->
   <section>
     <div class="sectionhead">
-      <div class="num">01 / 06</div>
+      <div class="num">01 / 07</div>
       <h2 class="title reveal">The <em>brief</em>.</h2>
     </div>
 
@@ -735,7 +763,7 @@
   <!-- ===== Race card / stats ===== -->
   <section>
     <div class="sectionhead">
-      <div class="num">02 / 06</div>
+      <div class="num">02 / 07</div>
       <h2 class="title reveal">The <em>numbers</em>.</h2>
     </div>
 
@@ -745,7 +773,7 @@
         <div class="figure">3<span class="unit">x</span></div>
         <div class="desc">5 to 10 AI agents in parallel, vs the solo-coding baseline.</div>
       </div>
-      <div class="cell accent">
+      <div class="cell accent" data-tip="ELSA 360 · 2026 · unblocked the revenue path for the next launch">
         <div class="label">Billing foundation, end to end</div>
         <div class="figure">48<span class="unit">h</span></div>
         <div class="desc">Integration, migrations, 17 tests. Industry baseline: 2 to 3 weeks.</div>
@@ -766,7 +794,7 @@
         <div class="figure">30<span class="unit">%</span></div>
         <div class="desc">Built the daily workspace a 25-agent CS team ran on.</div>
       </div>
-      <div class="cell accent">
+      <div class="cell accent" data-tip="frontend to infrastructure · about ten a week · under 18h open-to-merge">
         <div class="label">Pull requests merged in 6 weeks</div>
         <div class="figure">60<span class="unit">+</span></div>
         <div class="desc">Frontend to infrastructure, under 18h open-to-merge.</div>
@@ -787,7 +815,7 @@
   <!-- ===== Stages / experience ===== -->
   <section>
     <div class="sectionhead">
-      <div class="num">03 / 06</div>
+      <div class="num">03 / 07</div>
       <h2 class="title reveal">The <em>stages</em>.</h2>
     </div>
 
@@ -894,7 +922,7 @@
   <!-- ===== Kit ===== -->
   <section>
     <div class="sectionhead">
-      <div class="num">04 / 06</div>
+      <div class="num">04 / 07</div>
       <h2 class="title reveal">The <em>kit</em>.</h2>
     </div>
 
@@ -949,7 +977,7 @@
   <!-- ===== Languages + Education ===== -->
   <section>
     <div class="sectionhead">
-      <div class="num">05 / 06</div>
+      <div class="num">05 / 07</div>
       <h2 class="title reveal">Languages &amp; <em>credentials</em>.</h2>
     </div>
 
@@ -979,10 +1007,37 @@
     </div>
   </section>
 
+  <!-- ===== Elsewhere / socials ===== -->
+  <section>
+    <div class="sectionhead">
+      <div class="num">06 / 07</div>
+      <h2 class="title reveal">Off the <em>clock</em>.</h2>
+    </div>
+    <div class="prose reveal d1" style="margin-bottom: 6px;">
+      <p>Same discipline, away from the editor: training for a first 70.3 and playing techno, documented in public.</p>
+    </div>
+    <div class="elsewhere reveal d2">
+      <details class="collapsible">
+        <summary><span>TikTok · @ultra.choko</span><span class="plus">+</span></summary>
+        <div class="body">
+          <p>Training, racing, and the build, in short form.</p>
+          <a class="social-cta" href="https://www.tiktok.com/@ultra.choko" target="_blank" rel="noopener">Follow on TikTok &rarr;</a>
+        </div>
+      </details>
+      <details class="collapsible">
+        <summary><span>Instagram · @ultra.choko</span><span class="plus">+</span></summary>
+        <div class="body">
+          <p>The day to day: rides, sets, and the comeback arc.</p>
+          <a class="social-cta" href="https://www.instagram.com/ultra.choko" target="_blank" rel="noopener">Follow on Instagram &rarr;</a>
+        </div>
+      </details>
+    </div>
+  </section>
+
   <!-- ===== Signoff ===== -->
   <section class="signoff" style="border-bottom: 0;">
     <div class="sectionhead">
-      <div class="num">06 / 06</div>
+      <div class="num">07 / 07</div>
       <h2 class="title reveal">Let's <em>talk</em>.</h2>
     </div>
 
