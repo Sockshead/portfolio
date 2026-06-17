@@ -1,0 +1,991 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Juan Camilo Posada · CTO @ ELSA 360</title>
+<meta name="description" content="Engineer and endurance athlete. CTO of ELSA 360, building the AI coaching platform for endurance athletes. Trilingual. Available worldwide, remote." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=JetBrains+Mono:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --paper: #F1EAD9;
+    --paper-deep: #E8DFC9;
+    --ink: #1A1612;
+    --ink-soft: #4A3F35;
+    --ink-faint: #8B7F6F;
+    --clay: #C25B2D;
+    --clay-deep: #913D1A;
+    --rule: #1A16121F;
+    --serif: "Fraunces", "Times New Roman", serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-feature-settings: "ss01", "ss02";
+    font-variation-settings: "opsz" 14, "SOFT" 30, "WONK" 0;
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  /* Paper grain texture, applied as fixed overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.15  0 0 0 0 0.13  0 0 0 0 0.10  0 0 0 0.18 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  /* Subtle vignette */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 99;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(26,22,18,0.10) 100%);
+  }
+
+  ::selection { background: var(--clay); color: var(--paper); }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ---------- Layout ---------- */
+  .wrap {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 40px 56px 80px;
+    position: relative;
+  }
+
+  .topbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: baseline;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .topbar .stamp { display: flex; gap: 14px; align-items: center; }
+  .topbar .stamp .seal {
+    width: 26px; height: 26px;
+    border: 1.5px solid var(--ink);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: var(--serif);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    background: var(--paper);
+    transform: rotate(-3deg);
+  }
+  .topbar .center { text-align: center; }
+  .topbar .right { text-align: right; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 60px 0 30px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--clay-deep);
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+  .kicker::before {
+    content: "";
+    width: 32px; height: 1px; background: var(--clay-deep);
+  }
+
+  .name {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 144, "SOFT" 40, "WONK" 1;
+    font-weight: 380;
+    font-size: clamp(64px, 12vw, 188px);
+    line-height: 0.86;
+    letter-spacing: -0.045em;
+    color: var(--ink);
+    margin: 18px 0 14px;
+  }
+  .name .last {
+    font-style: italic;
+    font-weight: 360;
+    color: var(--clay-deep);
+    display: block;
+  }
+
+  .standfirst {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 24;
+    font-weight: 350;
+    font-size: clamp(20px, 2.2vw, 28px);
+    line-height: 1.35;
+    max-width: 32ch;
+    color: var(--ink);
+    margin: 22px 0 0;
+  }
+  .standfirst em {
+    font-style: italic;
+    color: var(--clay-deep);
+    background: linear-gradient(transparent 62%, rgba(194,91,45,0.18) 62%);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 80px;
+    align-items: end;
+  }
+
+  .bib {
+    border: 1px solid var(--ink);
+    background: var(--paper);
+    padding: 18px 18px 16px;
+    width: 220px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--ink);
+    position: relative;
+    transform: rotate(1.2deg);
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+  .bib .bib-num {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 80;
+    font-weight: 500;
+    font-size: 70px;
+    line-height: 1;
+    color: var(--clay);
+    letter-spacing: -0.05em;
+    display: block;
+    margin: 4px 0 8px;
+  }
+  .bib-row { display: flex; justify-content: space-between; padding: 4px 0; border-top: 1px dashed var(--rule); }
+  .bib-row:first-of-type { border-top: 0; }
+  .bib-row span:last-child { color: var(--ink-soft); }
+
+  /* ---------- Section heads ---------- */
+  section { padding: 72px 0; border-bottom: 1px solid var(--rule); position: relative; }
+
+  .sectionhead {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 28px;
+    align-items: baseline;
+    margin-bottom: 36px;
+  }
+  .sectionhead .num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--clay-deep);
+    letter-spacing: 0.18em;
+  }
+  .sectionhead .title {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 60, "SOFT" 30;
+    font-weight: 420;
+    font-size: clamp(34px, 4.4vw, 56px);
+    letter-spacing: -0.025em;
+    line-height: 1;
+  }
+  .sectionhead .title em {
+    font-style: italic;
+    color: var(--clay-deep);
+  }
+
+  /* ---------- Brief ---------- */
+  .brief {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr;
+    gap: 28px;
+  }
+  .brief .marginalia {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    line-height: 1.7;
+  }
+  .brief .marginalia b {
+    color: var(--ink);
+    display: block;
+    margin-top: 14px;
+  }
+  .brief .marginalia b:first-child { margin-top: 0; }
+
+  .pullquote {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 60, "SOFT" 50, "WONK" 1;
+    font-weight: 380;
+    font-size: clamp(28px, 3vw, 42px);
+    line-height: 1.12;
+    letter-spacing: -0.018em;
+    color: var(--ink);
+    border-left: 3px solid var(--clay);
+    padding-left: 24px;
+  }
+  .pullquote em { font-style: italic; color: var(--clay-deep); }
+
+  .prose p {
+    margin: 0 0 1em;
+    font-size: 17px;
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+  .prose p:first-child::first-letter {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 144, "WONK" 1;
+    font-weight: 420;
+    float: left;
+    font-size: 76px;
+    line-height: 0.82;
+    padding: 4px 10px 0 0;
+    color: var(--clay-deep);
+  }
+
+  /* ---------- Race card / stats ---------- */
+  .racecard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 20px;
+    border: 1px solid var(--ink);
+  }
+  .racecard .cell {
+    padding: 28px 22px 22px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    background: var(--paper);
+  }
+  .racecard .cell:nth-child(4n) { border-right: 0; }
+  .racecard .cell:nth-last-child(-n+4) { border-bottom: 0; }
+  .racecard .cell .label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .racecard .cell .figure {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 96, "WONK" 1;
+    font-weight: 420;
+    font-size: clamp(40px, 4.4vw, 64px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin: 14px 0 6px;
+    color: var(--ink);
+  }
+  .racecard .cell .figure .unit {
+    font-size: 0.42em;
+    font-weight: 360;
+    font-style: italic;
+    color: var(--clay-deep);
+    margin-left: 4px;
+    letter-spacing: 0;
+  }
+  .racecard .cell .desc {
+    font-family: var(--serif);
+    font-style: italic;
+    font-variation-settings: "opsz" 14;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.35;
+  }
+  .racecard .cell.accent { background: var(--ink); color: var(--paper); }
+  .racecard .cell.accent .label { color: rgba(241,234,217,0.55); }
+  .racecard .cell.accent .figure { color: var(--paper); }
+  .racecard .cell.accent .figure .unit { color: var(--clay); }
+  .racecard .cell.accent .desc { color: rgba(241,234,217,0.7); }
+
+  /* ---------- Stages (experience) ---------- */
+  .stages { display: flex; flex-direction: column; }
+  .stage {
+    display: grid;
+    grid-template-columns: 80px 1.1fr 2fr;
+    gap: 28px;
+    padding: 38px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .stage:first-child { border-top: 0; padding-top: 0; }
+  .stage .stage-num {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 96, "WONK" 1;
+    font-weight: 420;
+    font-size: 56px;
+    line-height: 0.9;
+    color: var(--clay);
+    letter-spacing: -0.04em;
+  }
+  .stage .meta { }
+  .stage .stage-where {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 36;
+    font-weight: 420;
+    font-size: 28px;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin: 0 0 6px;
+  }
+  .stage .stage-when {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  .stage .stage-tag {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+  .stage .body { font-size: 16.5px; line-height: 1.6; }
+  .stage .role {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--clay-deep);
+    margin-bottom: 12px;
+  }
+  .stage .lede {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 18;
+    font-weight: 380;
+    font-size: 19px;
+    line-height: 1.45;
+    margin: 0 0 14px;
+    color: var(--ink);
+  }
+  .stage .lede b { font-weight: 600; }
+  .stage ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .stage ul li {
+    padding: 8px 0 8px 26px;
+    position: relative;
+    color: var(--ink-soft);
+    font-size: 15.5px;
+    line-height: 1.45;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .stage ul li:last-child { border-bottom: 0; }
+  .stage ul li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 17px;
+    width: 14px; height: 1px;
+    background: var(--clay);
+  }
+  .stage .stack {
+    margin-top: 14px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    line-height: 1.65;
+  }
+  .stage .stack b { color: var(--ink-soft); }
+
+  /* Elevation profile graphic */
+  .elevation {
+    grid-column: 1 / -1;
+    height: 64px;
+    margin-top: 8px;
+    margin-bottom: -22px;
+    position: relative;
+  }
+  .elevation svg { width: 100%; height: 100%; display: block; }
+
+  /* ---------- Kit / Tools ---------- */
+  .kit {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 28px;
+  }
+  .kitlist {
+    column-count: 2;
+    column-gap: 56px;
+    column-rule: 1px solid var(--rule);
+  }
+  .kitgroup { break-inside: avoid; margin-bottom: 26px; }
+  .kitgroup h4 {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--clay-deep);
+    margin: 0 0 10px;
+    font-weight: 600;
+  }
+  .kitgroup p {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 18;
+    font-size: 18px;
+    line-height: 1.4;
+    margin: 0;
+    color: var(--ink);
+  }
+  .kitgroup p span {
+    display: inline-block;
+    padding-right: 6px;
+  }
+  .kitgroup p span + span::before {
+    content: "·";
+    color: var(--clay);
+    padding-right: 6px;
+    font-weight: 700;
+  }
+
+  /* ---------- Languages + Education ---------- */
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr;
+    gap: 28px;
+  }
+  .langs { }
+  .langs .lang {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .langs .lang:first-child { border-top: 1px solid var(--rule); }
+  .langs .lang .lname {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 36, "WONK" 1;
+    font-weight: 420;
+    font-size: 28px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .langs .lang .llevel {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    text-align: right;
+  }
+  .langs .lang .llevel b { color: var(--clay-deep); }
+
+  .edu {
+    font-family: var(--serif);
+  }
+  .edu h4 {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 36, "WONK" 1;
+    font-weight: 420;
+    font-size: 26px;
+    line-height: 1.1;
+    margin: 0 0 4px;
+    letter-spacing: -0.02em;
+  }
+  .edu .when {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 10px;
+  }
+  .edu p { font-size: 16px; line-height: 1.45; color: var(--ink-soft); margin: 0; }
+
+  /* ---------- Signoff / contact ---------- */
+  .signoff {
+    padding: 96px 0 32px;
+  }
+  .signoff .line {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 96, "SOFT" 50, "WONK" 1;
+    font-weight: 380;
+    font-size: clamp(40px, 5.5vw, 88px);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    margin: 0 0 28px;
+  }
+  .signoff .line em { font-style: italic; color: var(--clay-deep); }
+  .signoff .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 28px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+  }
+  .signoff .links a {
+    position: relative;
+    padding: 2px 0;
+    transition: color 0.18s;
+  }
+  .signoff .links a::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -2px;
+    height: 1px;
+    background: var(--clay);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.28s ease;
+  }
+  .signoff .links a:hover { color: var(--clay-deep); }
+  .signoff .links a:hover::after { transform: scaleX(1); }
+
+  .colophon {
+    margin-top: 56px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ---------- Reveal animation ---------- */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.9s cubic-bezier(.2,.65,.2,1), transform 0.9s cubic-bezier(.2,.65,.2,1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal.d1 { transition-delay: 0.08s; }
+  .reveal.d2 { transition-delay: 0.16s; }
+  .reveal.d3 { transition-delay: 0.24s; }
+  .reveal.d4 { transition-delay: 0.32s; }
+  .reveal.d5 { transition-delay: 0.40s; }
+  .reveal.d6 { transition-delay: 0.48s; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 980px) {
+    .wrap { padding: 28px 28px 60px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .bib { width: 100%; max-width: 280px; }
+    .brief { grid-template-columns: 1fr; }
+    .brief .marginalia { display: flex; flex-wrap: wrap; gap: 18px; }
+    .stage { grid-template-columns: 1fr; gap: 14px; padding: 28px 0; }
+    .stage .stage-num { font-size: 44px; }
+    .kit, .footer-grid, .sectionhead { grid-template-columns: 1fr; gap: 16px; }
+    .kitlist { column-count: 1; }
+    .racecard { grid-template-columns: repeat(2, 1fr); }
+    .racecard .cell:nth-child(4n) { border-right: 1px solid var(--rule); }
+    .racecard .cell:nth-child(2n) { border-right: 0; }
+    .racecard .cell:nth-last-child(-n+2) { border-bottom: 0; }
+    .racecard .cell:nth-last-child(-n+4):not(:nth-last-child(-n+2)) { border-bottom: 1px solid var(--rule); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <!-- ===== Topbar / masthead ===== -->
+  <header class="topbar">
+    <div class="stamp">
+      <div class="seal">C</div>
+      <span>Choko · Personal Dossier</span>
+    </div>
+    <div class="center">Vol. 06 — Engineer + Athlete</div>
+    <div class="right">Bogotá → Berlin · 2026</div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" style="padding-bottom: 56px;">
+    <div class="hero-grid">
+      <div>
+        <div class="kicker reveal">AI-Native Engineer · Ships AI in Production · Full-Stack</div>
+        <h1 class="name reveal d1">
+          Juan Camilo<br />
+          <span class="last">Posada.</span>
+        </h1>
+        <p class="standfirst reveal d2">
+          Engineer who ships <em>AI in production</em>. 60+ pull requests merged in the last six weeks, frontend to infrastructure, every feature shipped by a fleet of agents I run in parallel. Six years across fintech, lending and consumer. <a href="work.html" style="color:var(--clay);white-space:nowrap;">Read the case files &rarr;</a>
+        </p>
+      </div>
+
+      <aside class="bib reveal d3" aria-label="Race bib">
+        <div class="bib-row"><span>Bib</span><span>0509</span></div>
+        <span class="bib-num">29</span>
+        <div class="bib-row"><span>Class</span><span>AI-Native SWE</span></div>
+        <div class="bib-row"><span>Years building</span><span>6+</span></div>
+        <div class="bib-row"><span>Languages</span><span>ES · EN · DE</span></div>
+        <div class="bib-row"><span>Status</span><span>Open · Remote</span></div>
+        <div class="bib-row"><span>Next race</span><span>70.3 Berlin</span></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===== Brief ===== -->
+  <section>
+    <div class="sectionhead">
+      <div class="num">01 / 06</div>
+      <h2 class="title reveal">The <em>brief</em>.</h2>
+    </div>
+
+    <div class="brief">
+      <div class="marginalia reveal">
+        <b>Located</b>Remote, worldwide<br/>Origin Bogotá, CO
+        <b>Working with</b>TypeScript, Node, NestJS, AWS, Postgres, LLMs
+        <b>Currently</b>Architecting ELSA 360 from zero
+        <b>Open to</b>Engineering roles shipping AI in production
+      </div>
+
+      <div class="prose reveal d1">
+        <p>
+          A 29-year-old Colombian engineer who spent a month in a hospital bed two years ago and now rides 200 km in a single day. CTO of ELSA 360, where the product is an AI coaching platform for endurance athletes and the origin story is the same person building it. Before ELSA, six years of production code: 270+ lending workflows at Fuse, a Retool platform serving four ops teams at Astropay, a Design System adopted by 80% of company apps at Hunty.
+        </p>
+        <p>
+          Operates fluently as a senior IC, a tech lead, and a founding engineer. Built his first PCs at 15, ships LLM-driven backends today, and treats a clean commit history with the same care as a well-paced training week.
+        </p>
+      </div>
+
+      <div class="reveal d2">
+        <blockquote class="pullquote">
+          Two years ago my back put me in a hospital bed. Now I train for my first 70.3 and ship the platform <em>I needed when I was alone with no plan</em>.
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Race card / stats ===== -->
+  <section>
+    <div class="sectionhead">
+      <div class="num">02 / 06</div>
+      <h2 class="title reveal">The <em>numbers</em>.</h2>
+    </div>
+
+    <div class="racecard reveal d1">
+      <div class="cell">
+        <div class="label">Per-engineer throughput</div>
+        <div class="figure">3<span class="unit">x</span></div>
+        <div class="desc">5 to 10 AI agents in parallel, vs the solo-coding baseline.</div>
+      </div>
+      <div class="cell accent">
+        <div class="label">Billing foundation, end to end</div>
+        <div class="figure">48<span class="unit">h</span></div>
+        <div class="desc">Integration, migrations, 17 tests. Industry baseline: 2 to 3 weeks.</div>
+      </div>
+      <div class="cell">
+        <div class="label">Job-success at Fuse</div>
+        <div class="figure">99.5<span class="unit">%</span></div>
+        <div class="desc">Thousands of loan applications a week across 270+ workflows.</div>
+      </div>
+      <div class="cell">
+        <div class="label">Alert-noise cut</div>
+        <div class="figure">90<span class="unit">%</span></div>
+        <div class="desc">Time-to-acknowledge from ~25 minutes to under 5.</div>
+      </div>
+
+      <div class="cell">
+        <div class="label">Support handle-time cut · Astropay</div>
+        <div class="figure">30<span class="unit">%</span></div>
+        <div class="desc">Built the daily workspace a 25-agent CS team ran on.</div>
+      </div>
+      <div class="cell accent">
+        <div class="label">Pull requests merged in 6 weeks</div>
+        <div class="figure">60<span class="unit">+</span></div>
+        <div class="desc">Frontend to infrastructure, under 18h open-to-merge.</div>
+      </div>
+      <div class="cell">
+        <div class="label">Longest ride to date</div>
+        <div class="figure">200<span class="unit">km</span></div>
+        <div class="desc">In a single day, two years after spinal recovery.</div>
+      </div>
+      <div class="cell">
+        <div class="label">Next milestone</div>
+        <div class="figure">70.3<span class="unit">mi</span></div>
+        <div class="desc">Half-Ironman, Berlin. First-ever long-course race.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Stages / experience ===== -->
+  <section>
+    <div class="sectionhead">
+      <div class="num">03 / 06</div>
+      <h2 class="title reveal">The <em>stages</em>.</h2>
+    </div>
+
+    <div class="stages">
+
+      <article class="stage reveal">
+        <div class="stage-num">01</div>
+        <div class="meta">
+          <h3 class="stage-where">ELSA 360</h3>
+          <div class="stage-when">Jan 2026 — Present · Remote</div>
+          <div class="stage-tag">AI coaching + community platform for endurance athletes.</div>
+        </div>
+        <div class="body">
+          <div class="role">Chief Technology Officer</div>
+          <p class="lede"><b>Own the technical direction end-to-end:</b> architecture, stack, hiring, and most of the production code at this stage.</p>
+          <ul>
+            <li>Architecting an LLM-driven coaching layer over Garmin and Strava data: real workouts in, personalized training feedback out.</li>
+            <li>Stood up the core platform (TypeScript, Next.js, Node, Postgres, AWS, Docker) designed to scale 0 → 100k athletes without a rewrite.</li>
+            <li>Building the engineering culture from day zero: hiring pipeline, code-review norms, CI/CD, leverage-first tooling.</li>
+          </ul>
+          <div class="stack"><b>Stack</b> · TypeScript · Next.js · Node · Postgres · AWS · Docker · LLM/Agent frameworks · Garmin / Strava APIs</div>
+        </div>
+      </article>
+
+      <article class="stage reveal">
+        <div class="stage-num">02</div>
+        <div class="meta">
+          <h3 class="stage-where">Fuse <span style="color:var(--ink-faint); font-size:0.6em; font-style:italic;">fusefinance.com</span></h3>
+          <div class="stage-when">May 2025 — May 2026 · Remote</div>
+          <div class="stage-tag">Workflow automation for U.S. credit unions and mortgage lenders.</div>
+        </div>
+        <div class="body">
+          <div class="role">Solutions Engineer</div>
+          <p class="lede"><b>Owned the customer-facing engineering layer</b> for credit union clients — the bridge between lender ops and a Node/NestJS workflow runtime.</p>
+          <ul>
+            <li>Built and maintained 270+ production lending workflows for Canopy CU and others.</li>
+            <li>Shipped the Closing Disclosure fee-calculation engine: section-based formulas for loanCosts, otherCosts and totalClosingCosts, single-pass processing, lender-BC fee handling.</li>
+            <li>Designed and shipped the DTI Contribution UI and debt-injection pipeline; surfaces DTI weight to loan agents in real time and routes structured payloads into the Debts Creation SubWF.</li>
+            <li>Led root-cause analysis on a production HELOC merge-key collision that was silently dropping HE trades from DTI; proposed a safer compound key, partnered with engineering on the fix.</li>
+          </ul>
+          <div class="stack"><b>Stack</b> · TypeScript · Node · NestJS · AWS (S3, SQS, LocalStack) · PostgreSQL · Docker · custom JSON workflow DSL</div>
+        </div>
+      </article>
+
+      <article class="stage reveal">
+        <div class="stage-num">03</div>
+        <div class="meta">
+          <h3 class="stage-where">Astropay</h3>
+          <div class="stage-when">2022 — May 2025 · Remote</div>
+          <div class="stage-tag">LATAM payments. Owned the platform four ops teams ran on every day.</div>
+        </div>
+        <div class="body">
+          <div class="role">Interim Frontend Lead · Internal Tools</div>
+          <p class="lede"><b>Designed and proposed the full architecture</b> of Astropay's internal tools panel: scalable, maintainable, RBAC-aware, observable.</p>
+          <ul>
+            <li>Built a complete Retool ecosystem for Finance, Compliance, Fraud and Customer Support, the operational backbone of the company.</li>
+            <li>Led the migration of legacy internal systems to modern stacks, improving performance, security and developer velocity.</li>
+            <li>Stepped up to interim Frontend Lead: sprint planning, backlog refinement, mentoring junior engineers, translating fuzzy business asks into shippable specs.</li>
+            <li>Pioneered AI agent adoption inside ops: custom agents that accelerate manual decision-heavy workflows.</li>
+          </ul>
+          <div class="stack"><b>Stack</b> · TypeScript · React · Next.js · Node · Java · Retool · AWS · Docker · OKTA · Datadog · Looker · Postgres · MySQL · MongoDB</div>
+        </div>
+      </article>
+
+      <article class="stage reveal">
+        <div class="stage-num">04</div>
+        <div class="meta">
+          <h3 class="stage-where">Hunty</h3>
+          <div class="stage-when">2021 — 2022 · Remote</div>
+          <div class="stage-tag">Career-tech startup. Cut dev time in half.</div>
+        </div>
+        <div class="body">
+          <div class="role">Mid-Senior Frontend Developer</div>
+          <p class="lede"><b>Built and led the Design System</b> from zero: ~80% component adoption across all company apps, cut feature dev time 30–50%.</p>
+          <ul>
+            <li>Acted as interim Head of Frontend during the No-Code → fully-coded migration; defined frontend architecture and stack within one month.</li>
+            <li>Led a small dev team to a 95% on-time delivery rate through that migration.</li>
+          </ul>
+          <div class="stack"><b>Stack</b> · React · TypeScript · Node · Storybook · GitHub Actions · GCP</div>
+        </div>
+      </article>
+
+      <article class="stage reveal">
+        <div class="stage-num">05</div>
+        <div class="meta">
+          <h3 class="stage-where">Zeri <span style="color:var(--ink-faint); font-size:0.6em; font-style:italic;">client · Nona Analytics</span></h3>
+          <div class="stage-when">2020 — 2021 · Part-time</div>
+          <div class="stage-tag">Two flagship wellness apps for Lake Nona Performance Club.</div>
+        </div>
+        <div class="body">
+          <div class="role">Frontend Developer</div>
+          <p class="lede"><b>Built the UI/UX</b> for the Lake Nona Performance Club Wellness Assessment from scratch and supported it through lifecycle.</p>
+          <ul>
+            <li>Delivered the Lake Nona Life Project annual survey frontend on a tight 5-month deadline.</li>
+            <li>Acted as frontend lead on both flagship wellness products with direct PO partnership.</li>
+          </ul>
+          <div class="stack"><b>Stack</b> · Next.js · React · Node · Apollo GraphQL · AWS</div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===== Kit ===== -->
+  <section>
+    <div class="sectionhead">
+      <div class="num">04 / 06</div>
+      <h2 class="title reveal">The <em>kit</em>.</h2>
+    </div>
+
+    <div class="kit">
+      <div></div>
+      <div class="kitlist reveal d1">
+
+        <div class="kitgroup">
+          <h4>Languages</h4>
+          <p><span>TypeScript</span><span>JavaScript</span><span>Java</span><span>HTML5</span><span>CSS</span><span>SQL</span></p>
+        </div>
+
+        <div class="kitgroup">
+          <h4>Frontend</h4>
+          <p><span>React</span><span>Next.js</span><span>React Hooks</span><span>Redux</span><span>Tailwind</span><span>Storybook</span><span>Figma</span><span>Design Systems</span></p>
+        </div>
+
+        <div class="kitgroup">
+          <h4>Backend</h4>
+          <p><span>Node.js</span><span>NestJS</span><span>REST</span><span>GraphQL (Apollo)</span><span>Java</span><span>OKTA</span></p>
+        </div>
+
+        <div class="kitgroup">
+          <h4>Data</h4>
+          <p><span>PostgreSQL</span><span>MySQL</span><span>MongoDB</span></p>
+        </div>
+
+        <div class="kitgroup">
+          <h4>Cloud &amp; DevOps</h4>
+          <p><span>AWS</span><span>GCP</span><span>Docker</span><span>CI/CD</span><span>GitHub Actions</span><span>LocalStack</span></p>
+        </div>
+
+        <div class="kitgroup">
+          <h4>AI / Modern stack</h4>
+          <p><span>LLM integration</span><span>AI agents</span><span>Prompt engineering</span><span>RAG</span><span>Garmin / Strava pipelines</span></p>
+        </div>
+
+        <div class="kitgroup">
+          <h4>Tools &amp; observability</h4>
+          <p><span>Retool</span><span>Datadog</span><span>Looker</span><span>Kibana</span><span>JIRA</span></p>
+        </div>
+
+        <div class="kitgroup">
+          <h4>Leadership</h4>
+          <p><span>Tech leadership</span><span>Eng management</span><span>Hiring</span><span>Mentoring</span><span>System architecture</span><span>Sprint planning</span><span>Stakeholder management</span></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Languages + Education ===== -->
+  <section>
+    <div class="sectionhead">
+      <div class="num">05 / 06</div>
+      <h2 class="title reveal">Languages &amp; <em>credentials</em>.</h2>
+    </div>
+
+    <div class="footer-grid">
+      <div></div>
+      <div class="langs reveal">
+        <div class="lang">
+          <div class="lname">Spanish</div>
+          <div class="llevel"><b>Native</b><br/>Colombia · LATAM</div>
+        </div>
+        <div class="lang">
+          <div class="lname">English</div>
+          <div class="llevel"><b>C1</b><br/>Professional working</div>
+        </div>
+        <div class="lang">
+          <div class="lname">German</div>
+          <div class="llevel"><b>B2 · Sprachdiplom</b><br/>Officially certified (DSD)</div>
+        </div>
+      </div>
+
+      <div class="edu reveal d1">
+        <h4>Universidad de La Sabana</h4>
+        <div class="when">Chía, Colombia · Mar 2021</div>
+        <p>BEng, Informatics Engineering. GPA 4.3 / 5.0.</p>
+        <p style="margin-top:14px; font-style: italic;">Plus: rugby at university, first taste of structured high-performance training; hardware tinkering since 15.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Signoff ===== -->
+  <section class="signoff" style="border-bottom: 0;">
+    <div class="sectionhead">
+      <div class="num">06 / 06</div>
+      <h2 class="title reveal">Let's <em>talk</em>.</h2>
+    </div>
+
+    <p class="line reveal d1">
+      Engineering roles where shipping<br />
+      <em>AI in production</em> is the job.<br />
+      Remote or Málaga.
+    </p>
+
+    <div class="links reveal d2">
+      <a href="mailto:juancapoar@gmail.com">juancapoar@gmail.com</a>
+      <a href="tel:+573155570782">+57 315 557 0782</a>
+      <a href="https://www.linkedin.com/in/juan-camilo-posada/" target="_blank" rel="noopener">linkedin · juan-camilo-posada</a>
+      <a href="https://github.com/Sockshead" target="_blank" rel="noopener">github · sockshead</a>
+      <a href="https://github.com/Sockshead/atender-application-engine" target="_blank" rel="noopener">repo · atender-application-engine</a>
+      <a href="cv.pdf" target="_blank" rel="noopener">cv · pdf</a>
+    </div>
+
+    <div class="colophon">
+      <span>Set in Fraunces &amp; JetBrains Mono.</span>
+      <span>© 2026 Juan Camilo Posada · made in Bogotá, on the way to Berlin.</span>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // Scroll-triggered reveals
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting) {
+        e.target.classList.add("in");
+        io.unobserve(e.target);
+      }
+    }
+  }, { rootMargin: "0px 0px -10% 0px", threshold: 0.05 });
+
+  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+  // Trigger hero reveal immediately on load
+  window.addEventListener("load", () => {
+    document.querySelectorAll(".hero .reveal").forEach((el) => el.classList.add("in"));
+  });
+</script>
+
+</body>
+</html>
