@@ -1,0 +1,30 @@
+# Juan Camilo Posada (Choko)
+
+> AI-native software engineer. Ships AI in production. CTO at ELSA 360 (early-stage AI coaching
+> platform for endurance athletes); previously Solutions Engineer at Fuse (US lending automation)
+> and Interim Frontend Lead at Astropay (LATAM payments). Trilingual: Spanish (native), English
+> (C1), German (B2). Remote-first, open to relocate.
+
+## What he does
+- Builds and runs an OS-agnostic agent fleet: an orchestrator plus eight specialists, ~50 in-house
+  skills, branch-safety hooks, a routing contract tested in CI. 5 to 10 agents in parallel.
+- Roughly 3x per-engineer throughput; 60+ pull requests merged in six weeks, frontend to
+  infrastructure, under 18h open-to-merge.
+- Stood up a subscription billing foundation end to end in 48 hours (17 tests, 4 critical paths).
+- 270+ production lending workflows at ~99.5% job-success; built a 25-agent customer-support
+  team's daily workspace (handle time cut ~30%).
+
+## Stack
+TypeScript, Node.js, NestJS, Express, React, Vite, PostgreSQL, AWS (Lambda, SQS, S3, CloudWatch),
+Docker, Drizzle, Claude Agent SDK, GitHub Actions, PostHog.
+
+## Links
+- Portfolio: https://sockshead.github.io/portfolio/
+- Case files: https://sockshead.github.io/portfolio/work.html
+- CV (PDF): https://sockshead.github.io/portfolio/cv.pdf
+- Application engine (open source, agent fleet + CI): https://github.com/Sockshead/atender-application-engine
+- GitHub: https://github.com/Sockshead
+- LinkedIn: https://www.linkedin.com/in/juan-camilo-posada/
+
+## Contact
+juancapoar@gmail.com
